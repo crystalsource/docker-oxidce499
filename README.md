@@ -1,5 +1,8 @@
 # Docker OXID CE 4.9.9
 
+Docker image for a OXID CE 4.9.9 demo shop.  
+  
+
 Run container with  
 `docker run -d -P crystalsource/oxidce499`  
 
