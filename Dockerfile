@@ -28,10 +28,13 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
 
-
 # Copy Scripts
 ADD script /opt/docker
 RUN chmod 0755 /opt/docker/*.sh
+
+# MySQL
+ADD conf/mysql/my.cnf /etc/mysql/conf.d/my.cnf
+RUN /opt/docker/config-mysql.sh
 
 
 # Supervisor
@@ -42,8 +45,8 @@ ADD conf/supervisor/mysql.conf /etc/supervisor/conf.d/supervisor-mysql.conf
 # EXPOSE Apache
 EXPOSE 80
 
-# EXPOSE SSH
-EXPOSE 22
+# EXPOSE MySQL
+EXPOSE 3306
 
 # Copy Shop-Datadocker
 ADD shop/ce499 /var/www/oxid

@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for OXID, to provide autocomplete information to your IDE
- * Generated with PhpStorm / PS-145.1616 / OXID Plugin 0.4 on 2016-06-27 10:33:00.
+ * Generated with PhpStorm / PS-145.1616 / OXID Plugin 0.4 on 2016-06-27 10:43:00.
  *
  * @author Daniel Espendiller <daniel@espendiller.net>
  * @see https://github.com/Haehnchen/idea-php-oxid-plugin
