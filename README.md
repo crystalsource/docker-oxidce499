@@ -16,6 +16,14 @@ Self build
 `docker build -t oxiddemoce499 .`
 
 
+SSH
+---
+
+You can access the container with ssh.  
+**Username:** root  
+**Password:** crystal  
+
+
 OXID Setup
 ----------
 

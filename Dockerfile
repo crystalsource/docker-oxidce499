@@ -10,8 +10,18 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:ondrej/php5-5.6
 RUN apt-get update && apt-get -y install python-software-properties
-RUN apt-get -y --force-yes install supervisor git apache2 vim curl libapache2-mod-php5 php5 php5-mysql mysql-server php5-gd
+RUN apt-get -y --force-yes install supervisor openssh-server git apache2 vim curl libapache2-mod-php5 php5 php5-mysql mysql-server php5-gd
 
+# SSHD
+RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
+RUN echo 'root:crystal' | chpasswd
+RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
 
 # Enable apache mods.
 RUN a2enmod php5
@@ -40,6 +50,7 @@ RUN /opt/docker/config-mysql.sh
 # Supervisor
 ADD conf/supervisor/apache.conf /etc/supervisor/conf.d/supervisor-apache2.conf
 ADD conf/supervisor/mysql.conf /etc/supervisor/conf.d/supervisor-mysql.conf
+ADD conf/supervisor/ssh.conf /etc/supervisor/conf.d/supervisor-ssh.conf
 
 
 # EXPOSE Apache
@@ -47,6 +58,9 @@ EXPOSE 80
 
 # EXPOSE MySQL
 EXPOSE 3306
+
+# EXPOSE SSH
+EXPOSE 22
 
 # Copy Shop-Datadocker
 ADD shop/ce499 /var/www/oxid
