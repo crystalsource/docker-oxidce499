@@ -8,3 +8,12 @@ To define ports use
 
 You can use this to set an own shop directory  
 `docker run -d -P -v /own/local/path:/var/www/oxid`  
+
+
+OXID Setup
+----------
+
+Database access 
+**Username:** oxid 
+**Passwort:** oxid 
+(This user have all permissions) 
