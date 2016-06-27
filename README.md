@@ -13,7 +13,7 @@ You can use this to set an own shop directory
 OXID Setup
 ----------
 
-Database access 
-**Username:** oxid 
-**Passwort:** oxid 
-(This user have all permissions) 
+Database access  
+**Username:** oxid  
+**Passwort:** oxid  
+(This user have all permissions)  
