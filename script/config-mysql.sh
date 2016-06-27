@@ -13,6 +13,7 @@ done
 
 mysql -uroot -e "CREATE USER 'oxid'@'%' IDENTIFIED BY 'oxid'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
+mysql -uroot -e "FLUSH PRIVILEGES"
 
 
 echo "##################################################################"
